@@ -3,58 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
   
-  <link href ="reset.css" rel="stylesheet">
-  <link href="style.css" rel="stylesheet">
-  <link href="colors.css" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/colors.css">
+  <link rel="stylesheet" href="./css/style.css">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
   
-  <title>Frontend Mentor | Intro component with sign up form</title>
+  <title>Interactive Comments Section</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  
 </head>
 <body>
-  <div class="flexContainer">
-    <header class="header">
-      <h1 class="title">Learn to code by watching others</h1>
-      <h2 class="subtitle">See how experienced developers solve problems in real-time. Watching scripted tutorials is great, 
-        but understanding how developers think is invaluable.</h2>  
-    </header> 
 
-    <div class="call">
-     <a href="#" class="callText"><p>Try it free 7 days</p> then $20/mo. thereafter</a>
+  <div class="flexContainer">
+    <div class="comment">
+      <div class="commentHeader">
+        <div class="profile">
+          <img src="../../Cursos Alura/Alura Challenge Front End Dez-2021/img/profilepic.png">
+          <p class="name">NOME</p>
+        </div>
+        <p class="date">TEMPO_ENVIO</p>
+      </div>
+
+      <div class="commentContent">
+        <p class="commentText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed venenatis semper dolor quis ultricies. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eget sapien lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer dapibus vel turpis vel gravida. Aenean facilisis eleifend urna non fringilla. Nulla ut felis quis tortor condimentum maximus.</p>
+      </div>
+
+      <div class="commentActions">
+        <div class="reaction">
+          <button type="button" class="like"><img src="./images/icon-plus.svg"></button>
+          <p class="likeDisplay">0</p>
+          <button type="button" class="dislike"><img src="./images/icon-minus.svg"></button>
+        </div>
+
+          <div class="actionType">
+            <button type="button" class="reply"><img src="./images/icon-reply.svg"> Reply</button>
+            <button type="button" class="delete"><img src="./images/icon-delete.svg"> Delete</button>
+            <button type="button" class="edit"><img src="./images/icon-edit.svg"> Edit</button>            
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flexContainer">
+    <div class="commentReply">
+      <textarea class="commentArea" rows="5" cols="32" placeholder="Add a comment..."></textarea>
     </div>
 
-    <form class="register">
-
-      <input type="text" class="formItem fName" placeholder="First Name" value=""  id="fName" required>
-      <p class="fNameError error"></p>
-
-      <input type="text" class="formItem lName" placeholder="Last Name" value="" id="lName" required>
-      <p class="lNameError error"></p>
-
-      <input type="email" class="formItem email" placeholder="Email Adress" value="" id="email" required>
-      <p class="emailError error"></p>
-
-      <input type="password" class="formItem pWord" placeholder="Password" value="" id="pWord" required>
-      <p class="pWordError error"></p>
-
-      <input type="submit" class="formItem submitButton" value="CLAIM YOUR FREE TRIAL">
-
-      <p class="subText">By clicking the button, you are agreeing to our <a class="terms" href="#">Terms and Services</a></p>
-
-    </form>
-
+    <div class="commentActions">
+      <img src="../../Cursos Alura/Alura Challenge Front End Dez-2021/img/profilepic.png">
+      <button type="button" class="send">SEND</button>
+    </div>
+    
   </div>
+
+  <!-- Pull dynamic content from the data.json file -->
   
-  <script src = "./js/main.js" ></script>
+  <script src="./js/main.js"></script>
 </body>
 </html>

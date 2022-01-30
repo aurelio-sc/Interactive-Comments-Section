@@ -1,0 +1,122 @@
+body {
+  width: 375px;
+  font-size: 1rem;
+  font-family: Rubik;
+  font-weight: 400;
+  margin: 0 auto;
+  line-height: 1.6;
+  background-color: var(--neutral4);
+  color: var(--neutral2);
+}
+
+.flexContainer {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2rem;
+  background-color: var(--neutral5);
+  border-radius: 0.75rem;
+}
+
+.commentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.profile {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.name {
+  font-weight: 500;
+  color: var(--neutral1);
+}
+
+.commentContent {
+  margin-bottom: 1.5rem;
+}
+
+.commentActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.reaction {
+  background-color: var(--neutral4);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.like, .dislike {
+  border: none;
+  background-color: var(--neutral4);
+}
+
+.like img, .dislike img {
+  vertical-align: middle;
+}
+
+.likeDisplay {
+  color: var(--primary1);
+  font-weight: 500;
+}
+
+.reaction, .actionType {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.reply, .edit, .delete {
+  border: none;
+  background-color: var(--neutral5);
+  font-family: Rubik;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.reply, .edit {
+  color: var(--primary1); 
+}
+
+.delete {
+  color: var(--primary2);
+}
+
+.commentArea {
+  resize: none;
+  font-size: 1rem;
+  font-family: Rubik;
+  font-weight: 400;
+  border-radius: 0.5rem;
+  border: 0.125rem solid var(--neutral4);
+  color: var(--neutral2);
+  padding: 0.5rem 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.commentArea:focus {
+  outline: none;
+  border-color: var(--neutral2);
+}
+
+.send {
+  height: 2rem;
+  width: 4rem;
+  background-color: var(--primary1);
+  border: none;
+  border-radius: 0.4rem;
+  font-family: Rubik;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--neutral5);
+}
