@@ -1,0 +1,8 @@
+:root{
+   --primary1: hsl(0, 100%, 74%);
+   --primary2: hsl(154, 59%, 51%);
+   --primary3: 	rgba(43, 156, 107, 1);
+   --accent1: hsl(248, 32%, 49%);
+   --neutral1: hsl(249, 10%, 26%);
+   --neutral2:hsl(246, 25%, 77%);
+}

@@ -1,0 +1,164 @@
+body{
+    width: 375px;
+    margin: 0 auto;
+    font-family: poppins;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.6;
+    background: url(./images/bg-intro-desktop.png) center no-repeat;
+    background-color: var(--primary1);
+}
+
+.flexContainer{
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1.5rem;
+    padding-top: 1.5rem;
+}
+
+.header, .call, .register {
+    width: calc(100% - 3rem);
+    margin: 0 1.5rem;
+    text-align: center;
+}
+
+.header {
+    color: white;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+}
+
+.title {
+    font-size: 1.6rem;
+    line-height: 1.4;
+    font-weight: 700;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.call {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+    justify-content: center;
+    height: 5rem;
+    border-radius: 12px;
+    background-color: var(--accent1);
+    box-shadow: 0 6px rgba(0, 0, 0, 0.2);
+}
+
+.callText{
+    width: 100%;
+    color: white;
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+
+.callText p{
+    font-weight: 700;
+    display: inline-block;
+}
+
+.register {
+    background-color: white;
+    border-radius: 12px;
+}
+
+.formItem:first-child {
+    margin-top: 1.5rem;
+}
+
+.formItem {
+    width: inherit;
+    height: 3rem;
+
+    border-radius: 5px;
+    border: 1px solid;
+    border-color: var(--neutral2);
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+.fName, .lName, .email, .pWord {    
+    background-position: right;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    background-origin: content-box;
+    background-repeat: no-repeat;    
+}
+
+
+.error {
+    margin-bottom: 1.5rem;
+    color: var(--primary1);
+    text-align: right;
+    padding-right: 1.5rem;
+    font-size: 0.75rem;
+
+}
+
+.submitButton {
+    background-color: var(--primary2);
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 5px var(--primary3);
+    color: white;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    margin-bottom: 1.5rem;
+}
+
+.submitButton:active {
+    opacity: 0.7;
+}
+
+.subText {
+    margin-bottom: 1.5rem;
+    font-size: 0.7rem;
+    font-weight: 400;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    color: var(--neutral2);
+}
+
+.terms {
+    color: var(--primary1);
+}
+
+a {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: var(--neutral1);
+    font-family: poppins;
+    font-size: 1rem;
+    font-weight: 500;
+    padding-left: 1rem;
+    opacity: 1; /* Firefox */ 
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: var(--neutral1);
+    font-family: poppins;
+    font-size: 1rem;
+    font-weight: 500;
+    padding-left: 1rem;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: var(--neutral1);
+    font-family: poppins;
+    font-size: 1rem;
+    font-weight: 500;
+    padding-left: 1rem;
+  }

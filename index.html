@@ -3,10 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  
+  <link href ="reset.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <link href="colors.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   
-  <title>Frontend Mentor | Interactive comments section</title>
+  <title>Frontend Mentor | Intro component with sign up form</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
@@ -15,12 +22,39 @@
   </style>
 </head>
 <body>
+  <div class="flexContainer">
+    <header class="header">
+      <h1 class="title">Learn to code by watching others</h1>
+      <h2 class="subtitle">See how experienced developers solve problems in real-time. Watching scripted tutorials is great, 
+        but understanding how developers think is invaluable.</h2>  
+    </header> 
 
-  <!-- Pull dynamic content from the data.json file -->
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    <div class="call">
+     <a href="#" class="callText"><p>Try it free 7 days</p> then $20/mo. thereafter</a>
+    </div>
+
+    <form class="register">
+
+      <input type="text" class="formItem fName" placeholder="First Name" value=""  id="fName" required>
+      <p class="fNameError error"></p>
+
+      <input type="text" class="formItem lName" placeholder="Last Name" value="" id="lName" required>
+      <p class="lNameError error"></p>
+
+      <input type="email" class="formItem email" placeholder="Email Adress" value="" id="email" required>
+      <p class="emailError error"></p>
+
+      <input type="password" class="formItem pWord" placeholder="Password" value="" id="pWord" required>
+      <p class="pWordError error"></p>
+
+      <input type="submit" class="formItem submitButton" value="CLAIM YOUR FREE TRIAL">
+
+      <p class="subText">By clicking the button, you are agreeing to our <a class="terms" href="#">Terms and Services</a></p>
+
+    </form>
+
   </div>
+  
+  <script src = "./js/main.js" ></script>
 </body>
 </html>
