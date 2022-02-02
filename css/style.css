@@ -10,14 +10,22 @@ body {
 }
 
 .flexContainer {
-  padding: 1rem;
-  display: flex;
+   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 2rem;
-  background-color: var(--neutral5);
+  margin-top: 2rem; 
+}
+
+.comment, .addComment{
   border-radius: 0.75rem;
+  padding: 1rem;
+  background-color: var(--neutral5);
+  margin-bottom: 1.5rem;
+}
+
+.template{
+  display: none;
 }
 
 .commentHeader {
@@ -90,6 +98,10 @@ body {
 
 .delete {
   color: var(--primary2);
+}
+
+.addComment{
+  margin-top: 0;
 }
 
 .commentArea {
