@@ -94,38 +94,119 @@ class Comment {
 
 
 const dataArray = data[0];
+document.getElementById("userAvatar").src = dataArray.currentUser.image.png;
+let currentUserName = dataArray.currentUser.username;
+console.log(currentUserName);
+
 dataArray.comments.forEach(function(element) {
   const newComment = document.createElement('div');
   newComment.setAttribute('class', 'comment');
   newComment.innerHTML = `
   <div class="commentHeader">
-  <div class="profile">
-    <img src = ${element.user.image.png}>
-    <p class="name">${element.user.username}</p>
-  </div>
-  <p class="date">${element.createdAt}</p>
+    <div class="profile">
+      <img src = ${element.user.image.png}>
+      <p class="name">${element.user.username}</p>
+    </div>
+      <p class="date">${element.createdAt}</p>
   </div>
 
   <div class="commentContent">
-  <p class="commentText">${element.content}</p>
+    <p class="commentText">${element.content}</p>
   </div>
 
   <div class="commentActions">
-  <div class="reaction">
-    <button type="button" class="like"><img src="./images/icon-plus.svg"></button>
-    <p class="likeDisplay">${element.score}</p>
-    <button type="button" class="dislike"><img src="./images/icon-minus.svg"></button>
-  </div>
+    <div class="reaction">
+      <button type="button" class="like"><img src="./images/icon-plus.svg"></button>
+      <p class="likeDisplay">${element.score}</p>
+      <button type="button" class="dislike"><img src="./images/icon-minus.svg"></button>
+    </div>
 
     <div class="actionType">
       <button type="button" class="reply"><img src="./images/icon-reply.svg"> Reply</button>
-      <button type="button" class="delete"><img src="./images/icon-delete.svg"> Delete</button>
-      <button type="button" class="edit"><img src="./images/icon-edit.svg"> Edit</button>            
+         
     </div>
   </div>
+  
   `;
 
-  //newComment.innerHTML.getElementById("avatar").src = element.img.png;
-  console.log(element.user)
-  document.querySelector('.flexContainer').appendChild(newComment);
+  console.log(element.user.username);
+  document.querySelector('.commentsContainer').appendChild(newComment);
+
+  if (element.user.username == currentUserName) { //Para aparecerem os botões EDIT e DELETE se os nomes dos usuários coincidirem.
+
+    const newDelete = document.createElement('button');
+    newDelete.setAttribute('class', 'delete');
+    newDelete.innerHTML = "<img src='./images/icon-delete.svg'> Delete";
+    
+
+    const newEdit = document.createElement('button');
+    newEdit.setAttribute('class', 'edit');
+    newEdit.innerHTML = "<img src='./images/icon-edit.svg'> Edit";
+
+    newComment.querySelector('.actionType').appendChild(newDelete);
+    newComment.querySelector('.actionType').appendChild(newEdit);
+
+  }
+
+  //Colocando os replies nos seus respectivos comentários.
+  console.log(element["replies"].length);
+  const elementReply = element.replies;
+  console.log("this is the 'replies' inside the element " + elementReply);
+  if(elementReply.length !== 0) { //Esse if verifica se tamanho de 'replies' é zero. se NÃO for, ele aciona.
+    elementReply.reverse().forEach(function(reply){ //inverte e percorre cada elemento do array 'replies' e adiciona uma nova div.
+      const newReply = document.createElement('div');
+      newReply.setAttribute('class', 'newReply')
+      newReply.innerHTML = `
+      <div class="replyContent">
+        <div class="commentHeader">
+        <div class="profile">
+          <img src = ${reply.user.image.png}>
+          <p class="name">${reply.user.username}</p>
+        </div>
+          <p class="date">${reply.createdAt}</p>
+      </div>
+
+      <div class="commentContent">
+        <p class="commentText">${reply.content}</p>
+      </div>
+
+      <div class="commentActions">
+        <div class="reaction">
+          <button type="button" class="like"><img src="./images/icon-plus.svg"></button>
+          <p class="likeDisplay">${reply.score}</p>
+          <button type="button" class="dislike"><img src="./images/icon-minus.svg"></button>
+        </div>
+
+        <div class="actionType">
+          <button type="button" class="reply"><img src="./images/icon-reply.svg"> Reply</button>
+                
+        </div>
+      </div>
+      `;
+
+      document.querySelector('.commentsContainer').appendChild(newReply);
+     
+     
+      if (reply.user.username == currentUserName) { //Para aparecerem os botões EDIT e DELETE se os nomes dos usuários coincidirem.
+
+        const newDelete = document.createElement('button');
+        newDelete.setAttribute('class', 'delete');
+        newDelete.innerHTML = "<img src='./images/icon-delete.svg'> Delete";
+        
+    
+        const newEdit = document.createElement('button');
+        newEdit.setAttribute('class', 'edit');
+        newEdit.innerHTML = "<img src='./images/icon-edit.svg'> Edit";
+    
+        newReply.querySelector('.actionType').appendChild(newDelete);
+        newReply.querySelector('.actionType').appendChild(newEdit);
+    
+      }
+    });
+
+  }
+
+
 });
+
+

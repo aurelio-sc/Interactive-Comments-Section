@@ -17,7 +17,7 @@ body {
   margin-top: 2rem; 
 }
 
-.comment, .addComment{
+.comment, .addComment, .replyContent{
   border-radius: 0.75rem;
   padding: 1rem;
   background-color: var(--neutral5);
@@ -131,4 +131,8 @@ body {
   font-size: 1rem;
   font-weight: 500;
   color: var(--neutral5);
+}
+
+.replyContent{
+  margin-left: 1.5rem;
 }
