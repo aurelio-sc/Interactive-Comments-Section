@@ -1,11 +1,3 @@
-//data = require("../data.json");
-
-//import data from "../data.json" assert {type:"json"};
-
-//import("../data.json", {assert:{type:"json"}}).then((mode)=>{
-//  console.log(mode);
-//});
-
 const commentArea = document.querySelector(".commentArea");
 const placeholder = commentArea.getAttribute("placeholder");
 
@@ -38,60 +30,6 @@ class Comment {
     this.score -=1;
   }
 }
-
-//const trial = new Comment();
-//
-//console.log(trial.score);
-//trial.increaseScore();
-//console.log(trial.score);
-////console.log(data);
-//
-//
-//function load() {
-//	var mydata = JSON.stringify(data);
-//  console.log(mydata)
-//  mydata = JSON.parse(mydata);
-//	console.log(mydata);
-//}
-//
-//load();
-
-
-//Bloco para constuir comentário. Tem que inserir isso em uma função que percorre o data.js em busca de "id" de "comments" e fazer um comentário para cada id encontrado.
-//const newComment = document.createElement('div');
-//newComment.setAttribute('class', 'comment');
-//newComment.innerHTML = `
-//<div class="commentHeader">
-//<div class="profile">
-//  <img src="../../Cursos Alura/Alura Challenge Front End Dez-2021/img/profilepic.png">
-//  <p class="name">NOME</p>
-//</div>
-//<p class="date">TEMPO_ENVIO</p>
-//</div>
-//
-//<div class="commentContent">
-//<p class="commentText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed venenatis semper dolor quis ultricies. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eget sapien lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer dapibus vel turpis vel gravida. Aenean facilisis eleifend urna non fringilla. Nulla ut felis quis tortor condimentum maximus.</p>
-//</div>
-//
-//<div class="commentActions">
-//<div class="reaction">
-//  <button type="button" class="like"><img src="./images/icon-plus.svg"></button>
-//  <p class="likeDisplay">0</p>
-//  <button type="button" class="dislike"><img src="./images/icon-minus.svg"></button>
-//</div>
-//
-//  <div class="actionType">
-//    <button type="button" class="reply"><img src="./images/icon-reply.svg"> Reply</button>
-//    <button type="button" class="delete"><img src="./images/icon-delete.svg"> Delete</button>
-//    <button type="button" class="edit"><img src="./images/icon-edit.svg"> Edit</button>            
-//  </div>
-//</div>
-//`;
-//
-//document.querySelector('.flexContainer').appendChild(newComment);
-
-//Fim do bloco para construir comentário.
-
 
 const dataArray = data[0];
 document.getElementById("userAvatar").src = dataArray.currentUser.image.png;
@@ -209,4 +147,34 @@ dataArray.comments.forEach(function(element) {
 
 });
 
+
+let like = [...document.querySelectorAll(".like")]; //Converte em array a NodeList criada pelo querySelectorAll.
+let dislike = [...document.querySelectorAll(".dislike")];
+let likeDisplay = [...document.querySelectorAll(".likeDisplay")];
+let canLike = Array(like.length).fill(true); //Array de "pode dar like".
+let canDislike = Array(dislike.length).fill(true); //Array de "pode dar dislike".
+
+//Botões de Like.
+like.forEach(function(element){ //Para cada botão de like, ...
+  element.addEventListener("click", function(){ //...espera ser clicado e ...    
+    const index = like.indexOf(element); //...copia o index desse botão no array de botões para a constante "index".
+    if (canLike[index]==true) { //... Se estiver apto a dar like, ...
+      likeDisplay[index].textContent = parseInt(likeDisplay[index].textContent) + 1; //...procura o display de mesmo índice a aumenta 1.
+      canLike[index]=false; //Se torna inapto a dar like ...
+      canDislike[index]=true; //...e apto a dar dislike.
+    }
+  });
+});
+
+//Botões de Dislike.
+dislike.forEach(function(element){ //Para cada botão de dislike, ...
+  element.addEventListener("click", function(){ //...espera ser clicado e ...
+    const index = dislike.indexOf(element); //...copia o index desse botão no array de botões para a constante "index".
+    if (canDislike[index]==true) { //... Se estiver apto a dar dislike, ...
+      likeDisplay[index].textContent = parseInt(likeDisplay[index].textContent) - 1; //...procura o display de mesmo índice a aumenta 1.
+      canLike[index]=true;  //Se torna apto a dar like ...
+      canDislike[index]=false; //...e inapto a dar dislike.
+    }
+  });
+});
 
