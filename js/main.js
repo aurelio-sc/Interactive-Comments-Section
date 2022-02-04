@@ -34,7 +34,6 @@ class Comment {
 const dataArray = data[0];
 document.getElementById("userAvatar").src = dataArray.currentUser.image.png;
 let currentUserName = dataArray.currentUser.username;
-console.log(currentUserName);
 
 dataArray.comments.forEach(function(element) {
   const newComment = document.createElement('div');
@@ -67,7 +66,6 @@ dataArray.comments.forEach(function(element) {
   
   `;
 
-  console.log(element.user.username);
   document.querySelector('.commentsContainer').appendChild(newComment);
 
   if (element.user.username == currentUserName) { //Para aparecerem os botões EDIT e DELETE se os nomes dos usuários coincidirem.
@@ -87,9 +85,7 @@ dataArray.comments.forEach(function(element) {
   }
 
   //Colocando os replies nos seus respectivos comentários.
-  console.log(element["replies"].length);
   const elementReply = element.replies;
-  console.log("this is the 'replies' inside the element " + elementReply);
   if(elementReply.length !== 0) { //Esse if verifica se tamanho de 'replies' é zero. se NÃO for, ele aciona.
     elementReply.reverse().forEach(function(reply){ //inverte e percorre cada elemento do array 'replies' e adiciona uma nova div.
       const newReply = document.createElement('div');
@@ -143,7 +139,6 @@ dataArray.comments.forEach(function(element) {
     });
 
   }
-
 
 });
 
