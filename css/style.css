@@ -137,3 +137,6 @@ body {
   margin-left: 1.5rem;
 }
 
+.deleted{
+  display: none;
+}
