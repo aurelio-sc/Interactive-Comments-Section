@@ -201,6 +201,11 @@ let editArray = [...document.querySelectorAll(".edit")];
 editArray.forEach(function(element){ //Para cada botão de edit, ...
   element.addEventListener("click", function(){ //...espera ser clicado, ...
     console.log(element.parentNode.parentNode.previousElementSibling.children[0].textContent);
-    //document.querySelector(".addComment").style.display = "flex";
+    document.querySelector(".commentArea").value = element.parentNode.parentNode.previousElementSibling.children[0].textContent;
+    document.querySelector(".addComment").style.display = "flex";
+    document.querySelector(".send").addEventListener("click", function(){
+      element.parentNode.parentNode.previousElementSibling.children[0].textContent = document.querySelector(".commentArea").value;
+      document.querySelector(".addComment").style.display = "none";
+    })
   });
 });

@@ -102,6 +102,7 @@ body {
 
 .addComment{
   margin-top: 0;
+  display: none;
 }
 
 .commentArea {
