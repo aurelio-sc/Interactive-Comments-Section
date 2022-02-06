@@ -182,10 +182,7 @@ dislike.forEach(function(element){ //Para cada botão de dislike, ...
 });
 
 
-//Botão de Delete
-
-
-
+//Botões de Delete.
 let deleteArray = [...document.querySelectorAll(".delete")]; //Converte em array a NodeList criada pelo querySelectorAll.
 deleteArray.forEach(function(element){ //Para cada botão de delete, ...
   element.addEventListener("click", function(){ //...espera ser clicado, ...
@@ -196,5 +193,14 @@ deleteArray.forEach(function(element){ //Para cada botão de delete, ...
       }
     }
     confirmDelete();   
+  });
+});
+
+//Botões de Edit.
+let editArray = [...document.querySelectorAll(".edit")];
+editArray.forEach(function(element){ //Para cada botão de edit, ...
+  element.addEventListener("click", function(){ //...espera ser clicado, ...
+    console.log(element.parentNode.parentNode.previousElementSibling.children[0].textContent);
+    //document.querySelector(".addComment").style.display = "flex";
   });
 });
