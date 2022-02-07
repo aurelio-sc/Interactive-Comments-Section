@@ -183,32 +183,38 @@ dislike.forEach(function(element){ //Para cada botão de dislike, ...
 
 
 //Botões de Delete.
-let deleteArray = [...document.querySelectorAll(".delete")]; //Converte em array a NodeList criada pelo querySelectorAll.
-deleteArray.forEach(function(element){ //Para cada botão de delete, ...
-  element.addEventListener("click", function(){ //...espera ser clicado, ...
-    function confirmDelete(){//...confirma se quer mesmo deletar e, caso sim, ...
-      let confirmDelete = confirm("This action will delete your comment. Do you want to proceed with it?");
-      if (confirmDelete) {
-        element.parentNode.parentNode.parentNode.parentNode.setAttribute('class', 'deleted');//...coloca a classe "deleted", que tem a propriedade "display:none", na div do comentário.
+function deleteUpdate(){
+  let deleteArray = [...document.querySelectorAll(".delete")]; //Converte em array a NodeList criada pelo querySelectorAll.
+  deleteArray.forEach(function(element){ //Para cada botão de delete, ...
+    element.addEventListener("click", function(){ //...espera ser clicado, ...
+      function confirmDelete(){//...confirma se quer mesmo deletar e, caso sim, ...
+        let confirmDelete = confirm("This action will delete your comment. Do you want to proceed with it?");
+        if (confirmDelete) {
+          element.parentNode.parentNode.parentNode.parentNode.setAttribute('class', 'deleted');//...coloca a classe "deleted", que tem a propriedade "display:none", na div do comentário.
+        }
       }
-    }
-    confirmDelete();   
+      confirmDelete();   
+    });
   });
-});
+  }
+deleteUpdate();
 
 //Botões de Edit.
-let editArray = [...document.querySelectorAll(".edit")];
-editArray.forEach(function(element){ //Para cada botão de edit, ...
-  element.addEventListener("click", function(){ //...espera ser clicado, ...
-    document.querySelector(".commentArea").value = element.parentNode.parentNode.previousElementSibling.children[0].textContent;//... colocar o conteúdo do comentário na commentArea para ser editado, ...
-    document.querySelector(".addComment").style.display = "flex"; //...faz a commentArea aparecer, ...
-    document.querySelector(".send").addEventListener("click", function(){ //... espera o botão send ser clicado, ...
-      element.parentNode.parentNode.previousElementSibling.children[0].textContent = document.querySelector(".commentArea").value; //...atualiza o conteúdo do comentário com o que estiver escrito na commentArea e ...
-      document.querySelector(".addComment").style.display = "none"; //... esconde a toda a div addComment e ...
-      document.querySelector(".commentArea").value = "";//...apaga o conteúdo da commentArea.
-    })
+function editUpdate(){
+  let editArray = [...document.querySelectorAll(".edit")];
+  editArray.forEach(function(element){ //Para cada botão de edit, ...
+    element.addEventListener("click", function(){ //...espera ser clicado, ...
+      document.querySelector(".commentArea").value = element.parentNode.parentNode.previousElementSibling.children[0].textContent;//... colocar o conteúdo do comentário na commentArea para ser editado, ...
+      document.querySelector(".addComment").style.display = "flex"; //...faz a commentArea aparecer, ...
+      document.querySelector(".send").addEventListener("click", function(){ //... espera o botão send ser clicado, ...
+        element.parentNode.parentNode.previousElementSibling.children[0].textContent = document.querySelector(".commentArea").value; //...atualiza o conteúdo do comentário com o que estiver escrito na commentArea e ...
+        document.querySelector(".addComment").style.display = "none"; //... esconde a toda a div addComment e ...
+        document.querySelector(".commentArea").value = "";//...apaga o conteúdo da commentArea.
+      })
+    });
   });
-});
+}
+editUpdate();
 
 //Botões Reply.
 let replyArray = [...document.querySelectorAll(".reply")]; //Converte em array a NodeList criada pelo querySelectorAll.
@@ -216,9 +222,63 @@ replyArray.forEach(function(element){ //Para cada botão de edit, ...
   element.addEventListener("click", function(){ //...espera ser clicado, ...
     document.querySelector(".addComment").style.display = "flex"; //...faz a commentArea aparecer, ...
     document.querySelector(".send").addEventListener("click", function(){ //... espera o botão send ser clicado, ...
-      //AQUI ENTRA A CRIAÇÃO DO COMENTÁRIO. Acho q vai ser mais fácil fazer o botão send alterar o data.js. 
+      //AQUI ENTRA A CRIAÇÃO DO COMENTÁRIO. Acho q vai ser mais fácil fazer o botão send alterar o data.js. Será?
       
+
+      const newReply = document.createElement('div');
+      newReply.setAttribute('class', 'newReply')
+      newReply.innerHTML = `
+      <div class="replyContent">
+        <div class="commentHeader">
+        <div class="profile">
+          <img src = ${dataArray.currentUser.image.png}>
+          <p class="name">${dataArray.currentUser.username}</p>
+        </div>
+          <p class="date">just now</p>
+      </div>
+
+      <div class="commentContent">
+        <p class="commentText">${document.querySelector(".commentArea").value}</p>
+      </div>
+
+      <div class="commentActions">
+        <div class="reaction">
+          <button type="button" class="like"><img src="./images/icon-plus.svg"></button>
+          <p class="likeDisplay">0</p>
+          <button type="button" class="dislike"><img src="./images/icon-minus.svg"></button>
+        </div>
+
+        <div class="actionType">
+          <button type="button" class="reply"><img src="./images/icon-reply.svg"> Reply</button>
+                
+        </div>
+      </div>
+      `;
+
+      document.querySelector('.commentsContainer').appendChild(newReply);
+
+
+
       document.querySelector(".addComment").style.display = "none"; //... esconde a toda a div addComment.
+
+
+      //Aqui adiciona os botões delete e edit - EDIT TÁ QUEBRADO! TÁ CRIANDO NOVOS COMENTÁRIOS!
+      const newDelete = document.createElement('button');
+      newDelete.setAttribute('class', 'delete');
+      newDelete.innerHTML = "<img src='./images/icon-delete.svg'> Delete";
+      
+  
+      const newEdit = document.createElement('button');
+      newEdit.setAttribute('class', 'edit');
+      newEdit.innerHTML = "<img src='./images/icon-edit.svg'> Edit";
+  
+      newReply.querySelector('.actionType').appendChild(newDelete);
+      newReply.querySelector('.actionType').appendChild(newEdit);
+  
+      deleteUpdate();
+      editUpdate();
+
+
     })
   });
 });

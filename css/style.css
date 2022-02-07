@@ -141,3 +141,7 @@ body {
 .deleted{
   display: none;
 }
+
+.newReply{
+  width: 100%;
+}
