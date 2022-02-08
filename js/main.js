@@ -31,6 +31,7 @@ class Comment {
   }
 }
 
+
 const dataArray = data[0];
 document.getElementById("userAvatar").src = dataArray.currentUser.image.png;
 let currentUserName = dataArray.currentUser.username;
@@ -205,7 +206,9 @@ deleteUpdate();
 function editUpdate(){
   let editArray = [...document.querySelectorAll(".edit")];
   editArray.forEach(function(element){ //Para cada botão de edit, ...
-    element.addEventListener("click", function(){ //...espera ser clicado, ...
+    element.addEventListener("click", addEdit); //...espera ser clicado, ...
+    function addEdit(){
+      element.removeEventListener("click",addEdit);
       document.querySelector(".commentArea").value = element.parentNode.parentNode.previousElementSibling.children[0].textContent;//... colocar o conteúdo do comentário na commentArea para ser editado, ...
       document.querySelector(".addComment").style.display = "flex"; //...faz a commentArea aparecer, ...
       document.querySelector(".send").addEventListener("click", function(){ //... espera o botão send ser clicado, ...
@@ -213,7 +216,8 @@ function editUpdate(){
         document.querySelector(".addComment").style.display = "none"; //... esconde a toda a div addComment e ...
         document.querySelector(".commentArea").value = "";//...apaga o conteúdo da commentArea.
       })
-    });
+      
+    };
   });
 }
 editUpdate();
@@ -223,20 +227,22 @@ let replyArray = [...document.querySelectorAll(".reply")]; //Converte em array a
 let commentBoxArray = [...document.querySelectorAll(".commentBox")];
 replyArray.forEach(function(element){ //Para cada botão de edit, ...
   const index = replyArray.indexOf(element);
-  element.addEventListener("click", function(){ //...espera ser clicado, ...
+  element.addEventListener("click", addReply); //...espera ser clicado, ...
+  function addReply(){
+    element.removeEventListener("click",addReply);
     document.querySelector(".addComment").style.display = "flex"; //...faz a commentArea aparecer, ...
     document.querySelector(".send").addEventListener("click", function(){ //... espera o botão send ser clicado, ...
      
      
-      /*AQUI ENTRA A CRIAÇÃO DO COMENTÁRIO. - PRECISA SER REVISTO: 
-      1. BOTAO REPLY: SE CLICAR MAIS DE UMA VEZ ELE ADICIONA VÁRIOS COMENTÁRIOS IGUAIS!;
-      2. BOTÃO EDIT: EDITA, MAS ADICIONA UMA CÓPIA DO COMENTÁRIO (DUPLICA)
+      /*
+      AQUI ENTRA A CRIAÇÃO DO COMENTÁRIO. - PRECISA SER REVISTO: 
+
+      1. BOTAO REPLY: O PRIMEIRO REPLY VAI CERTO. O SEGUNDO, CRIA UM REPLY NO MESMO LUGAR DO PRIMEIRO E UM OUTRO, VAZIO,
+      NO LOCAL ONDE DEVERIA ESTAR;
+      2. BOTÃO EDIT: EDITA, MAS ADICIONA UMA CÓPIA DO COMENTÁRIO (DUPLICA).
       
-      ACHO QUE OS PROBLEMAS 1 E 2 ESTÃO RELACIONADOS. ALGO COM O EVENTLISTENER
-      PODE SER PORQUE O INDEX FOI CRIADO DENTRO DE CADA EVENTLISTENER. ACHO Q SE TORNAR O INDEX UMA
-      VARIÁVEL GLOBAL NULL OU UNDEFINED E 1) ALTERAR O SEU VALOR DENTRO DO EVENTLISTENER E 
-      2) RESETAR ELA PRA NULL OU UNDEFINED QND ACABAR DE USAR
-      IRÁ RESOLVER.*/
+      ACHO QUE OS PROBLEMAS 1 E 2 ESTÃO RELACIONADOS. ALGO COM O EVENTLISTENER.
+      */
       
 
       const newReply = document.createElement('div');
@@ -296,5 +302,5 @@ replyArray.forEach(function(element){ //Para cada botão de edit, ...
       editUpdate();
 
     })
-  });
+  };
 });
