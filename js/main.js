@@ -38,6 +38,7 @@ let currentUserName = dataArray.currentUser.username;
 dataArray.comments.forEach(function(element) {
   const newComment = document.createElement('div');
   newComment.setAttribute('class', 'comment');
+  newComment.classList.add('commentBox');
   newComment.innerHTML = `
   <div class="commentHeader">
     <div class="profile">
@@ -89,7 +90,8 @@ dataArray.comments.forEach(function(element) {
   if(elementReply.length !== 0) { //Esse if verifica se tamanho de 'replies' é zero. se NÃO for, ele aciona.
     elementReply.reverse().forEach(function(reply){ //inverte e percorre cada elemento do array 'replies' e adiciona uma nova div.
       const newReply = document.createElement('div');
-      newReply.setAttribute('class', 'newReply')
+      newReply.setAttribute('class', 'newReply');
+      newReply.classList.add('commentBox');
       newReply.innerHTML = `
       <div class="replyContent">
         <div class="commentHeader">
@@ -218,15 +220,23 @@ editUpdate();
 
 //Botões Reply.
 let replyArray = [...document.querySelectorAll(".reply")]; //Converte em array a NodeList criada pelo querySelectorAll.
+let commentBoxArray = [...document.querySelectorAll(".commentBox")];
 replyArray.forEach(function(element){ //Para cada botão de edit, ...
+  const index = replyArray.indexOf(element);
   element.addEventListener("click", function(){ //...espera ser clicado, ...
     document.querySelector(".addComment").style.display = "flex"; //...faz a commentArea aparecer, ...
     document.querySelector(".send").addEventListener("click", function(){ //... espera o botão send ser clicado, ...
-      //AQUI ENTRA A CRIAÇÃO DO COMENTÁRIO. Acho q vai ser mais fácil fazer o botão send alterar o data.js. Será?
+     
+     
+      /*AQUI ENTRA A CRIAÇÃO DO COMENTÁRIO. - PRECISA SER REVISTO: 
+      COLOCAR COMENTÁRIO NO LUGAR CERTO; 
+      BOTAO REPLY: SE CLICAR MAIS DE UMA VEZ ELE ADICIONA VÁRIOS COMENTÁRIOS IGUAIS!;
+      BOTÃO EDIT: EDITA, MAS ADICIONA UMA CÓPIA DO COMENTÁRIO (DUPLICA)*/
       
 
       const newReply = document.createElement('div');
-      newReply.setAttribute('class', 'newReply')
+      newReply.setAttribute('class', 'newReply');
+      newReply.classList.add('commentBox');
       newReply.innerHTML = `
       <div class="replyContent">
         <div class="commentHeader">
@@ -255,8 +265,8 @@ replyArray.forEach(function(element){ //Para cada botão de edit, ...
       </div>
       `;
 
-      document.querySelector('.commentsContainer').appendChild(newReply);
-
+      //document.querySelector('.commentBox').appendChild(newReply); //consertar aqui
+      commentBoxArray[index].appendChild(newReply);
 
 
       document.querySelector(".addComment").style.display = "none"; //... esconde a toda a div addComment.
@@ -277,7 +287,6 @@ replyArray.forEach(function(element){ //Para cada botão de edit, ...
   
       deleteUpdate();
       editUpdate();
-
 
     })
   });
