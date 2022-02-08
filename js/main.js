@@ -229,14 +229,16 @@ replyArray.forEach(function(element){ //Para cada botão de edit, ...
      
      
       /*AQUI ENTRA A CRIAÇÃO DO COMENTÁRIO. - PRECISA SER REVISTO: 
-      COLOCAR COMENTÁRIO NO LUGAR CERTO; 
-      BOTAO REPLY: SE CLICAR MAIS DE UMA VEZ ELE ADICIONA VÁRIOS COMENTÁRIOS IGUAIS!;
-      BOTÃO EDIT: EDITA, MAS ADICIONA UMA CÓPIA DO COMENTÁRIO (DUPLICA)*/
+      1. BOTAO REPLY: SE CLICAR MAIS DE UMA VEZ ELE ADICIONA VÁRIOS COMENTÁRIOS IGUAIS!;
+      2. BOTÃO EDIT: EDITA, MAS ADICIONA UMA CÓPIA DO COMENTÁRIO (DUPLICA)
+      
+      ACHO QUE OS PROBLEMAS 1 E 2 ESTÃO RELACIONADOS. ALGO COM O EVENTLISTENER*/
       
 
       const newReply = document.createElement('div');
       newReply.setAttribute('class', 'newReply');
       newReply.classList.add('commentBox');
+  
       newReply.innerHTML = `
       <div class="replyContent">
         <div class="commentHeader">
@@ -266,10 +268,11 @@ replyArray.forEach(function(element){ //Para cada botão de edit, ...
       `;
 
       //document.querySelector('.commentBox').appendChild(newReply); //consertar aqui
-      commentBoxArray[index].appendChild(newReply);
+      commentBoxArray[index].insertAdjacentElement('afterend',newReply);
 
 
       document.querySelector(".addComment").style.display = "none"; //... esconde a toda a div addComment.
+      document.querySelector(".commentArea").value = "";//...apaga o conteúdo da commentArea.
 
 
       //Aqui adiciona os botões delete e edit - EDIT TÁ QUEBRADO! TÁ CRIANDO NOVOS COMENTÁRIOS!
