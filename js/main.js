@@ -9,6 +9,7 @@ commentArea.onblur = function(){
   this.setAttribute("placeholder", placeholder);
 }
 
+/*
 class User {
   name;
   avatar;
@@ -30,7 +31,7 @@ class Comment {
     this.score -=1;
   }
 }
-
+*/
 
 const dataArray = data[0];
 document.getElementById("userAvatar").src = dataArray.currentUser.image.png;
@@ -217,86 +218,87 @@ function editUpdate(){
         element.parentNode.parentNode.previousElementSibling.children[0].textContent = document.querySelector(".commentArea").value; //...atualiza o conteúdo do comentário com o que estiver escrito na commentArea e ...
         document.querySelector(".addComment").style.display = "none"; //... esconde a toda a div addComment e ...
         document.querySelector(".commentArea").value = "";//...apaga o conteúdo da commentArea.
-      }
-      
+        element.addEventListener("click", addEdit);
+      };      
     };
   });
-}
+};
 editUpdate();
 
 //Botões Reply.
-let replyArray = [...document.querySelectorAll(".reply")]; //Converte em array a NodeList criada pelo querySelectorAll.
-let commentBoxArray = [...document.querySelectorAll(".commentBox")];
-replyArray.forEach(function(element){ //Para cada botão de edit, ...
-  const index = replyArray.indexOf(element);
-  element.addEventListener("click", addReply); //...espera ser clicado, ...
-  function addReply(){
-    element.removeEventListener("click",addReply);
-    document.querySelector(".addComment").style.display = "flex"; //...faz a commentArea aparecer, ...
-    document.querySelector(".send").addEventListener("click", sendReply); //... espera o botão send ser clicado, ...
-    function sendReply(){
-      document.querySelector(".send").removeEventListener("click", sendReply);
+function replyUpdate(){
+  let replyArray = [...document.querySelectorAll(".reply")]; //Converte em array a NodeList criada pelo querySelectorAll.
+  let commentBoxArray = [...document.querySelectorAll(".commentBox")];
+  replyArray.forEach(function(element){ //Para cada botão de edit, ...
+    const index = replyArray.indexOf(element);
+    element.addEventListener("click", addReply); //...espera ser clicado, ...
+    function addReply(){
+      element.removeEventListener("click",addReply);
+      document.querySelector(".addComment").style.display = "flex"; //...faz a commentArea aparecer, ...
+      document.querySelector(".send").addEventListener("click", sendReply); //... espera o botão send ser clicado, ...
+      function sendReply(){
+        document.querySelector(".send").removeEventListener("click", sendReply);
 
 
-      const newReply = document.createElement('div');
-      newReply.setAttribute('class', 'newReply');
-      newReply.classList.add('commentBox');
-  
-      newReply.innerHTML = `
-      <div class="replyContent">
-        <div class="commentHeader">
-        <div class="profile">
-          <img src = ${dataArray.currentUser.image.png}>
-          <p class="name">${dataArray.currentUser.username}</p>
-        </div>
-          <p class="date">just now</p>
-      </div>
-
-      <div class="commentContent">
-        <p class="commentText">${document.querySelector(".commentArea").value}</p>
-      </div>
-
-      <div class="commentActions">
-        <div class="reaction">
-          <button type="button" class="like"><img src="./images/icon-plus.svg"></button>
-          <p class="likeDisplay">0</p>
-          <button type="button" class="dislike"><img src="./images/icon-minus.svg"></button>
+        const newReply = document.createElement('div');
+        newReply.setAttribute('class', 'newReply');
+        newReply.classList.add('commentBox');
+    
+        newReply.innerHTML = `
+        <div class="replyContent">
+          <div class="commentHeader">
+          <div class="profile">
+            <img src = ${dataArray.currentUser.image.png}>
+            <p class="name">${dataArray.currentUser.username}</p>
+          </div>
+            <p class="date">just now</p>
         </div>
 
-        <div class="actionType">
-          <button type="button" class="reply"><img src="./images/icon-reply.svg"> Reply</button>
-                
+        <div class="commentContent">
+          <p class="commentText">${document.querySelector(".commentArea").value}</p>
         </div>
-      </div>
-      `;
 
-      //document.querySelector('.commentBox').appendChild(newReply); //consertar aqui
-      commentBoxArray[index].insertAdjacentElement('afterend',newReply);
+        <div class="commentActions">
+          <div class="reaction">
+            <button type="button" class="like"><img src="./images/icon-plus.svg"></button>
+            <p class="likeDisplay">0</p>
+            <button type="button" class="dislike"><img src="./images/icon-minus.svg"></button>
+          </div>
+
+          <div class="actionType">
+            <button type="button" class="reply"><img src="./images/icon-reply.svg"> Reply</button>
+                  
+          </div>
+        </div>
+        `;
+        
+        commentBoxArray[index].insertAdjacentElement('afterend',newReply);
 
 
-      document.querySelector(".addComment").style.display = "none"; //... esconde a toda a div addComment.
-      document.querySelector(".commentArea").value = "";//...apaga o conteúdo da commentArea.
+        document.querySelector(".addComment").style.display = "none"; //... esconde a toda a div addComment.
+        document.querySelector(".commentArea").value = "";//...apaga o conteúdo da commentArea.
 
+        const newDelete = document.createElement('button');
+        newDelete.setAttribute('class', 'delete');
+        newDelete.innerHTML = "<img src='./images/icon-delete.svg'> Delete";
+        
+    
+        const newEdit = document.createElement('button');
+        newEdit.setAttribute('class', 'edit');
+        newEdit.innerHTML = "<img src='./images/icon-edit.svg'> Edit";
+    
+        newReply.querySelector('.actionType').appendChild(newDelete);
+        newReply.querySelector('.actionType').appendChild(newEdit);
+    
+        deleteUpdate();
+        editUpdate();
 
-      //Aqui adiciona os botões delete e edit - EDIT TÁ QUEBRADO! TÁ CRIANDO NOVOS COMENTÁRIOS!
-      const newDelete = document.createElement('button');
-      newDelete.setAttribute('class', 'delete');
-      newDelete.innerHTML = "<img src='./images/icon-delete.svg'> Delete";
-      
-  
-      const newEdit = document.createElement('button');
-      newEdit.setAttribute('class', 'edit');
-      newEdit.innerHTML = "<img src='./images/icon-edit.svg'> Edit";
-  
-      newReply.querySelector('.actionType').appendChild(newDelete);
-      newReply.querySelector('.actionType').appendChild(newEdit);
-  
-      deleteUpdate();
-      editUpdate();
-
+        element.addEventListener("click", addReply);
+      };
     };
-  };
-});
+  });
+};
+replyUpdate();
 
 
 /*
@@ -305,4 +307,11 @@ TO DO:
   i) transformar as funções de like/dislike em funções nomeadas;
   ii) qnd inserir um comentário, dar um push no array de canLike e canDislike com true e false, respectivamente,
   na posição certa desse novo comentário.
+2. FIX: A seguinte sequência de ações:
+  i) Dar um reply;
+  ii) Dar outro reply em outro comentário;
+  iii) Editar o primeiro reply.
+  Apaga tudo que está no primeiro reply. No entanto, se tentar editar o último reply dado, funciona normalmente.
+3. Permirtir dar reply em um novo comentário.
 */
+
