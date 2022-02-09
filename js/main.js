@@ -236,18 +236,7 @@ replyArray.forEach(function(element){ //Para cada botão de edit, ...
     document.querySelector(".send").addEventListener("click", sendReply); //... espera o botão send ser clicado, ...
     function sendReply(){
       document.querySelector(".send").removeEventListener("click", sendReply);
-     
-     
-      /*
-      AQUI ENTRA A CRIAÇÃO DO COMENTÁRIO. - PRECISA SER REVISTO: 
 
-      1. BOTAO REPLY: O PRIMEIRO REPLY VAI CERTO. O SEGUNDO, CRIA UM REPLY NO MESMO LUGAR DO PRIMEIRO E UM OUTRO, VAZIO,
-      NO LOCAL ONDE DEVERIA ESTAR;
-      2. BOTÃO EDIT: EDITA, MAS ADICIONA UMA CÓPIA DO COMENTÁRIO (DUPLICA).
-      
-      ACHO QUE OS PROBLEMAS 1 E 2 ESTÃO RELACIONADOS. ALGO COM O EVENTLISTENER.
-      */
-      
 
       const newReply = document.createElement('div');
       newReply.setAttribute('class', 'newReply');
@@ -308,3 +297,12 @@ replyArray.forEach(function(element){ //Para cada botão de edit, ...
     };
   };
 });
+
+
+/*
+TO DO:
+1. Permitir dar like/dislike nos comentários novos. Como penso em fazer isso:
+  i) transformar as funções de like/dislike em funções nomeadas;
+  ii) qnd inserir um comentário, dar um push no array de canLike e canDislike com true e false, respectivamente,
+  na posição certa desse novo comentário.
+*/
