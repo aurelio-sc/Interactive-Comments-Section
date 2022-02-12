@@ -9,30 +9,6 @@ commentArea.onblur = function(){
   this.setAttribute("placeholder", placeholder);
 }
 
-/*
-class User {
-  name;
-  avatar;
-}
-
-class Comment {
-  id;
-  content;
-  score=0;
-  createdAt;
-  userName;
-  userAvatar;
-
-  increaseScore(){
-    this.score +=1;
-  }
-
-  decreaseScore(){
-    this.score -=1;
-  }
-}
-*/
-
 const dataArray = data[0];
 document.getElementById("userAvatar").src = dataArray.currentUser.image.png;
 let currentUserName = dataArray.currentUser.username;
